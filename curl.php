@@ -1,18 +1,15 @@
 <?php
-if (function_exists('curl_version')) {
-    echo "✅ cURL is enabled\n";
-} else {
-    echo "❌ cURL is NOT enabled\n";
-}
-
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, "https://example.com");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$output = curl_exec($ch);
+curl_setopt($ch, CURLOPT_URL, "http://www.google.com/");
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // store output in $result
+$result = curl_exec($ch);
 
-if ($output === false) {
-    echo "❌ curl_exec() failed: " . curl_error($ch);
+if ($result === false) {
+    echo "cURL Error: " . curl_error($ch);
 } else {
-    echo "✅ curl_exec() succeeded";
+    echo $result;
 }
+
 curl_close($ch);
+?>
